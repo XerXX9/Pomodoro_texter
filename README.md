@@ -29,7 +29,7 @@ This is a simple Pomodoro Timer script written in Python. It helps you manage yo
 
     - **Step 2**: Go to [https://myaccount.google.com/security](https://myaccount.google.com/security).
 
-    - **Step 3**: In the "Signing in to Google" section, click on "App passwords."
+    - **Step 3**: In the "Signing in to Google" section, click on "App passwords." If you do not see this option enable 2FA.
 
     - **Step 4**: Sign in again if prompted.
 
