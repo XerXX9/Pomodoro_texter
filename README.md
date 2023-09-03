@@ -1,53 +1,60 @@
-# Pomodoro_texter
+# Pomodoro Timer
 
-## Introduction
+This is a simple Pomodoro Timer script written in Python. It helps you manage your study and break sessions by setting timers and sending email alerts when your break time is over.
 
-This Python script implements a Pomodoro timer with email notifications. The Pomodoro technique is a time management method that helps you break your work into focused intervals (traditionally 25 minutes) separated by short breaks. This script will help you manage your study or work sessions effectively while receiving email notifications for breaks.
+## Usage
 
-## Prerequisites
+1. Clone this repository to your local machine:
 
-Before using this script, ensure you have the following requirements in place:
+    ```bash
+    git clone https://github.com/yourusername/pomodoro-timer.git
+    ```
 
-1. Python: Make sure you have Python installed on your system. You can download Python from [python.org](https://www.python.org/downloads/).
+2. Navigate to the project directory:
 
-2. Required Libraries: The script uses the `time`, `email.message`, and `smtplib` libraries. You can install these libraries using pip:
+    ```bash
+    cd pomodoro-timer
+    ```
 
-   ```bash
-   pip install smtplib
-Gmail Account: You will need a Gmail account to send email notifications. Note that you may need to allow "Less secure apps" on your Gmail account settings.
-Usage
-Clone or download this repository to your local machine.
+3. Open the `pomodoro_timer.py` file and replace the Gmail account credentials with your own:
 
-Open the pomodoro_timer.py file in a text editor or integrated development environment (IDE).
+    ```python
+    user = "your_email@gmail.com"
+    pw = "your_app_password"
+    ```
 
-Modify the following variables to suit your preferences:
+    To generate an app password for your Gmail account, follow these steps:
 
-user: Your Gmail email address.
-pw: Your Gmail password (Note: Storing passwords directly in the script is not secure; consider using environment variables or a configuration file for better security).
-askh: The number of hours you want to study.
-askm: The number of minutes you want to study.
-askbm: The number of minutes for your break.
-Save the script.
+    - **Step 1**: Sign in to your Google Account.
 
-Open a terminal or command prompt and navigate to the directory containing the script.
+    - **Step 2**: Go to [https://myaccount.google.com/security](https://myaccount.google.com/security).
 
-Run the script using the following command:
+    - **Step 3**: In the "Signing in to Google" section, click on "App passwords."
 
-bash
-Copy code
-python pomodoro_timer.py
-Follow the prompts to enter your study and break durations.
+    - **Step 4**: Sign in again if prompted.
 
-The script will display countdown timers and send you an email notification when your break time is up.
+    - **Step 5**: In the "App passwords" section, select "App" as the app and "Other (Custom name)" as the device.
 
-Security Note
-Storing your email password directly in the script is not recommended for security reasons. Consider using environment variables or a configuration file to store sensitive information.
+    - **Step 6**: Click "Generate."
 
-License
-This project is licensed under the MIT License.
+    - **Step 7**: Google will generate an app password for you. Copy this password and replace `"your_app_password"` in the script with it.
 
-Acknowledgments
-This script was created for educational and personal use.
-Feel free to customize and improve upon this script to meet your specific needs.
+4. Run the script:
 
-Happy studying and working!
+    ```bash
+    python pomodoro_timer.py
+    ```
+
+5. You will be prompted to enter the number of hours and minutes to study, as well as the number of minutes for your break.
+
+6. The timer will start, and you will receive an email alert when your break time is over.
+
+7. Enjoy productive study sessions with scheduled breaks!
+
+## Contributing
+
+If you'd like to contribute to this project, please feel free to submit a pull request. We welcome any improvements or feature additions.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
