@@ -1,18 +1,14 @@
 # pomodoro timer
-import time as t
 from email.message import EmailMessage
 import smtplib
-sepoch = t.time()
-local = list(t.localtime(sepoch))
-hour, min, sec = local[3], local[4], local[5]
 
-user = "textav7@gmail.com"
-pw = "karcblxfjsbskmhr"
+user = "Enter your username here"
+pw = "Enter your app password here"
 
-def email_alert(sub, body, to):
+def email_alert(subject, body, to):
     msg = EmailMessage()
     msg.set_content(body)
-    msg['subject'] = sub
+    msg['subjectj'] = subject
     msg['to'] = to
     msg['from'] = user
 
@@ -27,7 +23,7 @@ def countdown(h=0, m=50):
     while total_seconds >= 0:
         if total_seconds == 0:
             total_seconds -= 1
-            countdown_break(askbm)
+            countdown_break(ask_break_min)
         else:
             if total_seconds > 3600:
                 print(total_seconds//3600, "Hour/s", (total_seconds - ((total_seconds//3600)*3600))//60, "Minute/s", total_seconds % 60, "Second/s")
@@ -42,7 +38,7 @@ def countdown_break(m=10):
     total_seconds = 60*m
     while total_seconds >= 0:
         if total_seconds == 0:
-            email_alert("Break time has Elapsed", "Your 10 mins of Break time has elapsed", "9972815243@airtelmail.com")
+            email_alert("Break time has Elapsed", "Your 10 mins of Break time has elapsed", user)
             total_seconds -= 1
         else:
             print(round(total_seconds//60), "Minute/s", total_seconds % 60, "Second/s")
@@ -50,9 +46,9 @@ def countdown_break(m=10):
             total_seconds -= 1
     
 
-askh = int(input("Enter the number of hours to study: "))
-askm = int(input("Enter the number of minutes to study: "))
-askbm = int(input("Enter the number of minutes of break: "))
-countdown(askh, askm)
+ask_hour = int(input("Enter the number of hours to study: "))
+ask_min = int(input("Enter the number of minutes to study: "))
+ask_break_min = int(input("Enter the number of minutes of break: "))
+countdown(ask_hour, ask_min)
 
 
