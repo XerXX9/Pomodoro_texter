@@ -1,60 +1,61 @@
-# Pomodoro Timer
+## Pomodoro Timer Documentation
 
-This is a simple Pomodoro Timer script written in Python. It helps you manage your study and break sessions by setting timers and sending email alerts when your break time is over.
+### Introduction
+The Pomodoro Timer is a Python script designed to help users manage their study or work sessions effectively using the Pomodoro Technique. This technique involves breaking work into intervals, traditionally 25 minutes in length, separated by short breaks. After a certain number of work intervals, a longer break is taken. The timer script implements this concept by allowing users to set the duration of their study sessions and breaks.
 
-## Usage
+### Dependencies
+The script utilizes the following Python libraries:
+- `email.message.EmailMessage`: For constructing email messages.
+- `smtplib`: For sending emails via SMTP.
+- `time`: For implementing the countdown timer.
 
-1. Clone this repository to your local machine:
+### Gmail Account Configuration
+Before using the script, users need to configure their Gmail account credentials in the script. They should replace the placeholder values with their actual Gmail username and password.
 
-    ```bash
-    git clone https://github.com/yourusername/pomodoro-timer.git
-    ```
+### Usage
+To use the Pomodoro Timer script, follow these steps:
 
-2. Navigate to the project directory:
+1. **Configure Gmail Account**: Replace the placeholder values for the `user` and `pw` variables with your Gmail account credentials.
 
-    ```bash
-    cd pomodoro-timer
-    ```
+2. **Set Website Redirection**: The script includes a feature to block distracting websites during study sessions by redirecting them to `127.0.0.1` in the hosts file. Users can customize the `hosts_path` variable to point to their hosts file, typically located at `C:\Windows\System32\drivers\etc\hosts`.
 
-3. Open the `pomodoro_timer.py` file and replace the Gmail account credentials with your own:
+3. **Define Website List**: Specify the list of distracting websites in the `website_list` variable.
 
-    ```python
-    user = "your_email@gmail.com"
-    pw = "your_app_password"
-    ```
+4. **Run the Timer**: Execute the script and provide input when prompted for the following:
+   - Number of hours to study
+   - Number of minutes to study
+   - Number of minutes for breaks
+   
+5. **During Study Session**: The script will display a countdown timer indicating the remaining time for the study session. It will also block access to distracting websites specified in the `website_list`.
 
-    To generate an app password for your Gmail account, follow these steps:
+6. **During Breaks**: Once the study session ends, the script will prompt the user to start their break by pressing Enter. A countdown timer will display the remaining time for the break. Upon completion, an email alert will be sent to notify the user that the break time has elapsed.
 
-    - **Step 1**: Sign in to your Google Account.
+### Functions
+The script contains the following functions:
 
-    - **Step 2**: Go to [https://myaccount.google.com/security](https://myaccount.google.com/security).
+1. `email_alert(subject, body, to)`: Sends an email alert using a Gmail account.
+   - `subject`: Subject of the email.
+   - `body`: Body of the email.
+   - `to`: Recipient's email address.
 
-    - **Step 3**: In the "Signing in to Google" section, click on "App passwords." If you do not see this option enable 2FA.
+2. `countdown(h=0, m=50)`: Starts a countdown timer for studying.
+   - `h`: Number of hours to study.
+   - `m`: Number of minutes to study.
 
-    - **Step 4**: Sign in again if prompted.
+3. `countdown_break(m=10)`: Starts a countdown timer for a break.
+   - `m`: Number of minutes for the break.
 
-    - **Step 5**: In the "App passwords" section, select "App" as the app and "Other (Custom name)" as the device.
+### Example Usage
+```python
+# Get user input for study duration and break duration
+ask_hour = int(input("Enter the number of hours to study: "))
+ask_min = int(input("Enter the number of minutes to study: "))
+ask_break_min = int(input("Enter the number of minutes of break: "))
 
-    - **Step 6**: Click "Generate."
+# Start the countdown timer for studying
+countdown(ask_hour, ask_min)
+```
 
-    - **Step 7**: Google will generate an app password for you. Copy this password and replace `"your_app_password"` in the script with it.
-
-4. Run the script:
-
-    ```bash
-    python pomodoro_timer.py
-    ```
-
-5. You will be prompted to enter the number of hours and minutes to study, as well as the number of minutes for your break.
-
-6. The timer will start, and you will receive an email alert when your break time is over.
-
-7. Enjoy productive study sessions with scheduled breaks!
-
-## Contributing
-
-If you'd like to contribute to this project, please feel free to submit a pull request. We welcome any improvements or feature additions.
-
-## License
-
-This project is licensed under the MIT License 
+### Note
+- Ensure that the script is run with appropriate permissions to modify the hosts file and send emails via SMTP.
+- Customize the script as needed to fit personal preferences or requirements.
