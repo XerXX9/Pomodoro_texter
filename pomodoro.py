@@ -6,8 +6,8 @@ import smtplib
 import time as t
 
 # Gmail account credentials (You should replace these with your own credentials)
-user = "textav7@gmail.com"
-pw = "qemj nchb bamn pfyo "
+user = "Enter your Email here"
+pw = "Enter your app password here"
 hosts_path = "C:\\Windows\\System32\\drivers\\etc\\hosts"
 redirect = "127.0.0.1"
 
