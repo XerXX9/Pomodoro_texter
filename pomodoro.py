@@ -6,8 +6,12 @@ import smtplib
 import time as t
 
 # Gmail account credentials (You should replace these with your own credentials)
-user = "Enter your email here"
-pw = "Enter your app password"
+user = "textav7@gmail.com"
+pw = "qemj nchb bamn pfyo "
+hosts_path = "C:\\Windows\\System32\\drivers\\etc\\hosts"
+redirect = "127.0.0.1"
+
+website_list =  ["www.youtube.com","youtube.com", "https://www.youtube.com/", "https://www.instagram.com/","www.instagram.com", "instagram.com", "https://www.twitch.tv/", "twitch.tv", "www.twitch.tv"] 
 
 def email_alert(subject, body, to):
     """
@@ -32,6 +36,8 @@ def email_alert(subject, body, to):
     server.login(user, pw)
     server.send_message(msg)
     server.quit()
+    return
+    
 
 def countdown(h=0, m=50):
     """
@@ -48,6 +54,7 @@ def countdown(h=0, m=50):
     while total_seconds >= 0:
         if total_seconds == 0:
             countdown_break(ask_break_min)
+            break
         else:
             if total_seconds > 3600:
                 print(total_seconds // 3600, "Hour/s", (total_seconds - ((total_seconds // 3600) * 3600)) // 60, "Minute/s", total_seconds % 60, "Second/s")
@@ -55,6 +62,12 @@ def countdown(h=0, m=50):
                 print(round(total_seconds // 60), "Minute/s", total_seconds % 60, "Second/s")
             t.sleep(1)
             total_seconds -= 1
+
+        with open(hosts_path, 'r+') as file: 
+            content = file.read() 
+            for website in website_list: 
+                if website not in content: 
+                    file.write(redirect + " " + website + "\n") 
 
 def countdown_break(m=10):
     """
@@ -66,15 +79,26 @@ def countdown_break(m=10):
     Returns:
         None
     """
-    print("Your break starts now:")
+    p = input("Press enter to start your break:")
     total_seconds = 60 * m
-    while total_seconds >= 0:
-        if total_seconds == 0:
+    while total_seconds > 0:
+        if total_seconds == 1:
+            print(round(total_seconds // 60), "Minute/s", total_seconds % 60, "Second/s")
             email_alert("Break time has Elapsed", "Your 10 mins of Break time has elapsed", user)
+            return
         else:
             print(round(total_seconds // 60), "Minute/s", total_seconds % 60, "Second/s")
             t.sleep(1)
             total_seconds -= 1
+        with open(hosts_path, 'r+') as file: 
+            content=file.readlines() 
+            file.seek(0) 
+            for line in content: 
+                if not any(website in line for website in website_list): 
+                    file.write(line) 
+  
+            file.truncate() 
+     
 
 # Get user input for study duration and break duration
 ask_hour = int(input("Enter the number of hours to study: "))
